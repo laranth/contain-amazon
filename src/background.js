@@ -1,8 +1,8 @@
 // Param values from https://developer.mozilla.org/Add-ons/WebExtensions/API/contextualIdentities/create
 const AMAZON_CONTAINER_DETAILS = {
-  name: "Amazon",
+  name: "LAmazon",
   color: "orange",
-  icon: "briefcase"
+  icon: "fence"
 };
 
 const AMAZON_NATIONAL_DOMAINS = [
@@ -82,7 +82,8 @@ const AMAZON_SERVICES_DOMAINS = [
   "awsevents.com",
   "primevideo.com",
   "twitch.com",
-  "twitch.tv"
+  "twitch.tv",
+  "ext-twitch.tv"
 ];
 
 let AMAZON_DOMAINS = [
@@ -485,7 +486,7 @@ function tabUpdateListener (tabId, changeInfo, tab) {
 
 async function updateBrowserActionIcon (tab) {
 
-  browser.browserAction.setBadgeText({text: ""});
+  //browser.browserAction.setBadgeText({text: ""});
 
   const url = tab.url;
   const hasBeenAddedToAmazonContainer = await isAddedToAmazonContainer(url);
