@@ -486,24 +486,24 @@ function tabUpdateListener (tabId, changeInfo, tab) {
 
 async function updateBrowserActionIcon (tab) {
 
-  //browser.browserAction.setBadgeText({text: ""});
+  //LAR BROKEN//browser.browserAction.setBadgeText({text: ""});
 
   const url = tab.url;
   const hasBeenAddedToAmazonContainer = await isAddedToAmazonContainer(url);
 
   if (isAmazonURL(url)) {
     browser.storage.local.set({"CURRENT_PANEL": "on-amazon"});
-    browser.browserAction.setPopup({tabId: tab.id, popup: "./panel.html"});
+    //LAR BROKEN//browser.browserAction.setPopup({tabId: tab.id, popup: "./panel.html"});
   } else if (hasBeenAddedToAmazonContainer) {
     browser.storage.local.set({"CURRENT_PANEL": "in-azc"});
   } else {
     const tabState = tabStates[tab.id];
     const panelToShow = (tabState && tabState.trackersDetected) ? "trackers-detected" : "no-trackers";
     browser.storage.local.set({"CURRENT_PANEL": panelToShow});
-    browser.browserAction.setPopup({tabId: tab.id, popup: "./panel.html"});
-    browser.browserAction.setBadgeBackgroundColor({color: "#A44D00"});
+    //LAR BROKEN//browser.browserAction.setPopup({tabId: tab.id, popup: "./panel.html"});
+    //LAR BROKEN//browser.browserAction.setBadgeBackgroundColor({color: "#A44D00"});
     if ( panelToShow === "trackers-detected" ) {
-      browser.browserAction.setBadgeText({text: "!"});
+      //LAR BROKEN//browser.browserAction.setBadgeText({text: "!"});
     }
   }
 }
@@ -554,7 +554,7 @@ async function blockAmazonSubResources (requestDetails) {
   if (originUrlIsAmazon) {
     const message = {msg: "amazon-domain"};
     // Send the message to the content_script
-    browser.tabs.sendMessage(requestDetails.tabId, message);
+    //LAR BROKEN//browser.tabs.sendMessage(requestDetails.tabId, message);
     return {};
   }
 
